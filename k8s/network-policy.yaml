@@ -1,4 +1,3 @@
-
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -7,14 +6,14 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app: service-a
+      app: service-a  # This applies to Service A
   policyTypes:
-    - Egress
+  - Egress
   egress:
-    - to:
-        podSelector:
+  - to:
+      - podSelector:  # Select Service B by its pod label
           matchLabels:
             app: service-b
-      ports:
-      - protocol: TCP
-        port: 80
+    ports:
+    - protocol: TCP
+      port: 80  # Block access to port 80 of Service B

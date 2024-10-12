@@ -1,12 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-service
+  name: multi-service-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /  
 spec:
+  ingressClassName: nginx
   rules:
-  - host: "<your-domain-or-ip>"
+  - host: yam-assignment-m.chickenkiller.com
     http:
       paths:
       - path: /service-A
