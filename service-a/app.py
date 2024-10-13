@@ -35,7 +35,16 @@ def update_bitcoin_prices():
 # Start the background thread to update prices
 threading.Thread(target=update_bitcoin_prices, daemon=True).start()
 
-# Define an HTTP route to return the current price and 10-minute average as an HTML page
+@app.route('/healthz', methods=['GET'])
+def health_check():
+    return "OK", 200
+
+
+@app.route('/readyz', methods=['GET'])
+def readiness_check():
+    return "Ready", 200
+
+# return the current price and 10-minute average 
 @app.route('/', methods=['GET'])
 def get_bitcoin_price():
     if len(prices) == 0:
@@ -44,20 +53,44 @@ def get_bitcoin_price():
     current_price = prices[-1]
     avg_price = sum(prices) / len(prices) if len(prices) == 10 else None
 
-    # HTML template to display the Bitcoin prices
+
     html = """
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bitcoin Price</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Bitcoin Price</h1>
-        <p><strong>Current Price:</strong> ${{ current_price }}</p>
-        {% if avg_price %}
-            <p><strong>10-Minute Average Price:</strong> ${{ avg_price }}</p>
-        {% else %}
-            <p>Not enough data for a 10-minute average yet.</p>
-        {% endif %}
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h1>Bitcoin Price Tracker</h1>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="text-center">Current Bitcoin Price</h3>
+                            <p class="text-center display-4">${{ current_price }}</p>
+                            {% if avg_price %}
+                                <h4 class="text-center">10-Minute Average Price</h4>
+                                <p class="text-center display-4">${{ avg_price }}</p>
+                            {% else %}
+                                <p class="text-center">Not enough data for a 10-minute average yet.</p>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer text-center">
+                            <small>Updated every minute</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
     </html>
     """
@@ -65,5 +98,4 @@ def get_bitcoin_price():
     return render_template_string(html, current_price=current_price, avg_price=avg_price)
 
 if __name__ == "__main__":
-    # Run the Flask app on port 80
     app.run(host='0.0.0.0', port=80)
