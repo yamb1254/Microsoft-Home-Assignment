@@ -126,3 +126,8 @@ You can access the service at `/service-A`.
 
 You can access the service at `/service-B`.
 
+The domain that are running now :
+   http://yam-assignment-m.chickenkiller.com/service-A 
+   or
+   http://yam-assignment-m.chickenkiller.com/service-B
+
