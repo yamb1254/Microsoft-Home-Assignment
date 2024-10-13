@@ -1,4 +1,4 @@
-
+![alt text](image.png)
 # **Microsoft-Home-Assignment**
 
 ## **Overview**
@@ -35,7 +35,7 @@ The architecture of the project is designed with scalability and modularity in m
 - **Kubernetes**: Both services run in separate pods in a Kubernetes cluster, with NGINX Ingress managing external traffic routing.
 
 Here's a visual diagram of the architecture:
-![alt text](<K8Sassigmnet.drawio (1).png>)
+![alt text](<FlowDiagram.png>)
 
 
 ## **Getting Started**
