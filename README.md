@@ -3,11 +3,11 @@
 
 ## **Overview**
 
-```
+
 Project Name is a microservice-based web application that fetches real-time Bitcoin prices and displays the latest value along with a 10-minute moving average. It is deployed on a Kubernetes cluster using NGINX as the Ingress controller, with two services:
 - Service A: Fetches and displays the Bitcoin price and its 10-minute average.
 - Service B: A simple hello-world-style service returning "Hello Microsoft!"
-```
+
 
 ## **Table of Contents**
 - [Overview](#overview)
