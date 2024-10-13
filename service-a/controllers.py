@@ -6,9 +6,11 @@ from app import app
 def health_check():
     return "OK", 200
 
+
 @app.route('/readyz', methods=['GET'])
 def readiness_check():
     return "Ready", 200
+
 
 @app.route('/', methods=['GET'])
 def get_bitcoin_price():

@@ -11,6 +11,7 @@ def start_price_updater():
     """Starts a background thread to update Bitcoin prices every minute."""
     threading.Thread(target=update_bitcoin_prices, daemon=True).start()
 
+
 def fetch_bitcoin_price():
     """Fetches the current Bitcoin price from the API."""
     url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
@@ -23,6 +24,7 @@ def fetch_bitcoin_price():
     except requests.RequestException as e:
         print(f"Error fetching Bitcoin price: {e}")
         return None
+    
 
 def update_bitcoin_prices():
     """Continuously updates the prices list with the latest Bitcoin prices."""
@@ -41,6 +43,7 @@ def _update_price_list(price):
     if len(prices) > 10:
         prices.pop(0)
 
+
 def _log_price_data():
     """Logs the current price and 10-minute average if available."""
     current_price = prices[-1]
@@ -48,6 +51,7 @@ def _log_price_data():
     if len(prices) == 10:
         avg_price = sum(prices) / len(prices)
         print(f"10-minute average Bitcoin price: ${avg_price}")
+
 
 def get_bitcoin_price_util():
     """Generates and returns the HTML page displaying the Bitcoin price."""
@@ -60,9 +64,11 @@ def get_bitcoin_price_util():
     html = Configurations.html
     return render_template_string(html, current_price=current_price, avg_price=avg_price)
 
+
 def _calculate_average_price():
     """Calculates the average price of the last 10 updates."""
     return sum(prices) / len(prices)
+
 
 # Start the price updating thread
 start_price_updater()
