@@ -1,4 +1,3 @@
-![alt text](image.png)
 # **Microsoft-Home-Assignment**
 
 ## **Overview**
