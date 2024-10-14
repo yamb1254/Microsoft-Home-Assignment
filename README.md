@@ -7,7 +7,7 @@ Project Name is a microservice-based web application that fetches real-time Bitc
 - Service A: Fetches and displays the Bitcoin price and its 10-minute average.
 - Service B: A simple hello-world-style service returning "Hello Microsoft!"
 
- The domain that are running now : http://yam-assignment-m.chickenkiller.com/service-A or http://yam-assignment-m.chickenkiller.com/service-B
+ The domain that are running now : https://yam-assignment.online/service-A or https://yam-assignment.online/service-B
 
 
 ## **Table of Contents**
@@ -128,8 +128,6 @@ You can access the service at `/service-A`.
 
 You can access the service at `/service-B`.
 
-The domain that are running now :
-   http://yam-assignment-m.chickenkiller.com/service-A 
-   or
-   http://yam-assignment-m.chickenkiller.com/service-B
+ The domain that are running now : https://yam-assignment.online/service-A or https://yam-assignment.online/service-B
+
 
